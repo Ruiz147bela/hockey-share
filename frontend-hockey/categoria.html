@@ -4,117 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Categoría | Hockey Share</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #fff;
-      margin: 0;
-      color: #222;
-    }
-
-    header {
-      padding: 1.5rem 2rem;
-      font-size: 2rem;
-      font-weight: bold;
-      border-bottom: 1px solid #eee;
-    }
-
-    .container {
-      display: flex;
-      padding: 2rem;
-    }
-
-    .sidebar {
-      width: 250px;
-      padding-right: 2rem;
-      border-right: 1px solid #eee;
-    }
-
-    .sidebar h3 {
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 0.3rem;
-    }
-
-    .sidebar label {
-      display: block;
-      margin: 0.6rem 0;
-      font-size: 0.95rem;
-    }
-
-    .main {
-      flex: 1;
-      padding-left: 2rem;
-    }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 2rem;
-    }
-
-    .product-card {
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      padding: 1rem;
-      background: #fff;
-      text-align: center;
-      transition: box-shadow 0.2s;
-    }
-
-    .product-card:hover {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      cursor: pointer;
-    }
-
-    .product-card img {
-      height: 160px;
-      object-fit: contain;
-      margin-bottom: 1rem;
-    }
-
-    .product-card h4 {
-      font-size: 1rem;
-      color: #222;
-      margin: 0.5rem 0;
-    }
-
-    .product-card p {
-      font-size: 0.85rem;
-      margin: 0.2rem 0;
-    }
-
-    .stars {
-      margin-top: 0.3rem;
-      font-size: 1rem;
-      color: #fbc02d;
-    }
-
-    .volver {
-      margin: 2rem;
-      display: inline-block;
-      font-weight: bold;
-      color: #222;
-      text-decoration: none;
-    }
-
-    @media screen and (max-width: 768px) {
-      .container {
-        flex-direction: column;
-      }
-      .sidebar {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid #eee;
-        padding-bottom: 1rem;
-        margin-bottom: 1.5rem;
-      }
-      .main {
-        padding-left: 0;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles/main.css" />
 </head>
 <body>
 
@@ -135,93 +25,14 @@
 
     <!-- Contenido principal -->
     <main class="main">
-      <!-- 🔧 Agregado para que el título funcione -->
       <h2 id="categoria-header"></h2>
-
       <div class="product-grid" id="categoria-grid"></div>
     </main>
   </div>
 
   <a href="index.html" class="volver">← Volver al inicio</a>
 
-  <script>
-    const tipo = new URLSearchParams(window.location.search).get("tipo");
-    document.getElementById("categoria-header").textContent = "Categoría: " + tipo.charAt(0).toUpperCase() + tipo.slice(1);
-
-    const implementos = [
-      {
-        img: 'https://via.placeholder.com/200x160?text=Casco+Pro',
-        nombre: 'Casco Pro',
-        desc: 'Casco reforzado con visera',
-        estado: 4,
-        tipo: 'cascos',
-        club: 'Avalancha',
-        pista: 'Pista Norte'
-      },
-      {
-        img: 'https://via.placeholder.com/200x160?text=Stick+Avanzado',
-        nombre: 'Stick Avanzado',
-        desc: 'Fibra de carbono ligero',
-        estado: 5,
-        tipo: 'sticks',
-        club: 'Raptors',
-        pista: 'Pista Central'
-      },
-      {
-        img: 'https://via.placeholder.com/200x160?text=Guantes+X',
-        nombre: 'Guantes X',
-        desc: 'Protección acolchada premium',
-        estado: 3,
-        tipo: 'guantes',
-        club: 'Rinos',
-        pista: 'Pista Sur'
-      }
-    ];
-
-    const grid = document.getElementById("categoria-grid");
-
-    implementos.filter(item => item.tipo === tipo).forEach(item => {
-      const div = document.createElement("div");
-      div.className = "product-card";
-      div.innerHTML = `
-        <img src="${item.img}" alt="${item.nombre}">
-        <h4>${item.nombre}</h4>
-        <p>${item.desc}</p>
-        <p><strong>Club:</strong> ${item.club}</p>
-        <p><strong>Pista:</strong> ${item.pista}</p>
-        <div class="stars">${'⭐'.repeat(item.estado)}${'☆'.repeat(5 - item.estado)}</div>
-      `;
-      div.addEventListener("click", () => {
-        const nombre = encodeURIComponent(item.nombre);
-        window.location.href = `detalle.html?nombre=${nombre}`;
-      });
-      grid.appendChild(div);
-    });
-
-    fetch('navbar.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById("navbar-container").innerHTML = html;
-
-        // Personalizar según el usuario
-        const username = localStorage.getItem("usuario");
-        const userNav = document.getElementById("user-nav");
-        if (userNav) {
-          if (username) {
-            userNav.innerHTML = `👤 ${username}
-              <a href="nuevo.html" style="margin-left:1rem; color:#b71c1c; font-weight:bold;">+ Nuevo</a>
-              <a href="#" onclick="logout()" style="margin-left:1rem; color:#b71c1c;">Cerrar sesión</a>`;
-          } else {
-            userNav.innerHTML = `<a href="login.html" style="color:#b71c1c; font-weight:bold;">Login</a>`;
-          }
-        }
-      });
-
-    function logout() {
-      localStorage.removeItem("usuario");
-      location.reload();
-    }
-  </script>
-
+  <!-- Lógica JS separada -->
+  <script src="scripts/categoria.js"></script>
 </body>
 </html>

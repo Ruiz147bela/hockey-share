@@ -1,68 +1,14 @@
-<!-- nuevo.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nuevo Implemento</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #fff;
-      padding: 2rem;
-      max-width: 700px;
-      margin: auto;
-    }
-
-    h2 {
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-
-    label {
-      display: block;
-      margin-top: 1rem;
-      font-weight: bold;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      padding: 0.6rem;
-      margin-top: 0.3rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
-    button {
-      margin-top: 2rem;
-      padding: 0.7rem 1.5rem;
-      background: #b71c1c;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .preview {
-      margin-top: 1rem;
-      max-width: 100%;
-      border: 1px solid #ddd;
-    }
-
-    .volver {
-      display: block;
-      text-align: center;
-      margin: 2rem auto;
-      font-weight: bold;
-      color: #222;
-      text-decoration: none;
-    }
-
-  </style>
+  <link rel="stylesheet" href="styles/main.css" />
 </head>
 <body>
   <div id="navbar-container"></div>
+
   <h2>Registrar Nuevo Implemento</h2>
   <form id="form-implemento">
     <label for="imagen">Imagen</label>
@@ -102,28 +48,8 @@
     <button type="submit">Guardar</button>
 
     <a href="index.html" class="volver">← Volver al inicio</a>
-
   </form>
 
-  <script>
-    const imgInput = document.getElementById("imagen");
-    const preview = document.getElementById("preview");
-
-    imgInput.addEventListener("change", function () {
-      const file = imgInput.files[0];
-      if (file) {
-        preview.src = URL.createObjectURL(file);
-        preview.style.display = "block";
-      }
-    });
-
-    document.getElementById("form-implemento").addEventListener("submit", function (e) {
-      e.preventDefault();
-      alert("Implemento registrado (simulación frontend). En el backend se almacenaría.");
-      window.location.href = "index.html";
-    });
-
-    
-  </script>
+  <script src="scripts/nuevo.js"></script>
 </body>
 </html>
