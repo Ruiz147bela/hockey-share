@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hockey Share</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      background: #ffffff;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .nuevo-contenedor {
+      display: flex;
+      justify-content: flex-end;
+      padding: 1rem 2rem 0;
+    }
+
+    .nuevo-btn {
+      background: #b71c1c;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: background 0.3s ease;
+    }
+
+    .nuevo-btn:hover {
+      background: #a01717;
+    }
+
+    .section {
+      padding: 2rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .section h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 0.5rem;
+      color: #222;
+    }
+
+    .carousel-wrapper {
+      position: relative;
+    }
+
+    .carousel {
+      overflow-x: auto;
+      white-space: nowrap;
+      scroll-behavior: smooth;
+      padding: 0.5rem 0;
+    }
+
+    .carousel-track {
+      display: inline-flex;
+      gap: 1rem;
+    }
+
+    .scroll-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #b71c1c;
+      color: white;
+      border: none;
+      font-size: 1.4rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      z-index: 1;
+      border-radius: 5px;
+    }
+
+    .scroll-btn:hover {
+      background: #a01717;
+    }
+
+    .scroll-btn.left {
+      left: -10px;
+    }
+
+    .scroll-btn.right {
+      right: -10px;
+    }
+
+    .card {
+      width: 220px;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      transition: box-shadow 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    .card img {
+      width: 100%;
+      height: 140px;
+      object-fit: contain;
+      margin-bottom: 0.5rem;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin: 0.4rem 0;
+      color: #222;
+    }
+
+    .card p {
+      font-size: 0.85rem;
+      margin: 0.2rem 0;
+      color: #555;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div id="navbar-container"></div>
+
+  
+
+  <!-- Sección: Nuevos Implementos -->
+  <section class="section">
+    <h2>Nuevos Implementos</h2>
+    <div class="carousel-wrapper">
+      <button class="scroll-btn left" onclick="scrollLeft('new-carousel')">◀</button>
+      <div class="carousel" id="new-carousel">
+        <div class="carousel-track">
+          <div class="card" onclick="goToDetalle('Stick Pro')">
+            <img src="https://via.placeholder.com/200x140?text=Stick" alt="Stick" />
+            <h3>Stick Pro</h3>
+            <p>Estado: Nuevo</p>
+          </div>
+          <div class="card" onclick="goToDetalle('Guantes X')">
+            <img src="https://via.placeholder.com/200x140?text=Guantes" alt="Guantes" />
+            <h3>Guantes X</h3>
+            <p>Estado: Donación</p>
+          </div>
+          <div class="card" onclick="goToDetalle('Casco Pro')">
+            <img src="https://via.placeholder.com/200x140?text=Casco" alt="Casco" />
+            <h3>Casco Pro</h3>
+            <p>Estado: Fisurado</p>
+          </div>
+        </div>
+      </div>
+      <button class="scroll-btn right" onclick="scrollRight('new-carousel')">▶</button>
+    </div>
+  </section>
+
+  <!-- Sección: Categorías -->
+  <section class="section">
+    <h2>Categorías de Implementos</h2>
+    <div class="card-grid">
+      <div class="card" onclick="window.location.href='categoria.html?tipo=cascos'">
+        <img src="https://via.placeholder.com/200x140?text=Cascos" alt="Cascos">
+        <h3>Cascos</h3>
+      </div>
+      <div class="card" onclick="window.location.href='categoria.html?tipo=sticks'">
+        <img src="https://via.placeholder.com/200x140?text=Sticks" alt="Sticks">
+        <h3>Sticks</h3>
+      </div>
+      <div class="card" onclick="window.location.href='categoria.html?tipo=guantes'">
+        <img src="https://via.placeholder.com/200x140?text=Guantes" alt="Guantes">
+        <h3>Guantes</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección: Clubes -->
+  <section class="section">
+    <h2>Clubes</h2>
+    <div class="card-grid">
+      <div class="card" onclick="window.location.href='club.html?club=Avalancha'">
+        <img src="https://via.placeholder.com/200x140?text=Avalancha" alt="Avalancha">
+        <h3>Avalancha</h3>
+      </div>
+      <div class="card" onclick="window.location.href='club.html?club=Raptors'">
+        <img src="https://via.placeholder.com/200x140?text=Raptors" alt="Raptors">
+        <h3>Raptors</h3>
+      </div>
+      <div class="card" onclick="window.location.href='club.html?club=Rinos'">
+        <img src="https://via.placeholder.com/200x140?text=Rinos" alt="Rinos">
+        <h3>Rinos</h3>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const username = localStorage.getItem("usuario");
+
+    function logout() {
+      localStorage.removeItem("usuario");
+      location.reload();
+    }
+
+    function goToDetalle(nombre) {
+      const encoded = encodeURIComponent(nombre);
+      window.location.href = `detalle.html?nombre=${encoded}`;
+    }
+
+    function scrollLeft(id) {
+      document.getElementById(id).scrollBy({ left: -300, behavior: 'smooth' });
+    }
+
+    function scrollRight(id) {
+      document.getElementById(id).scrollBy({ left: 300, behavior: 'smooth' });
+    }
+
+    fetch('navbar.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("navbar-container").innerHTML = html;
+
+        // Personalizar según el usuario
+        const username = localStorage.getItem("usuario");
+        const userNav = document.getElementById("user-nav");
+        if (userNav) {
+          if (username) {
+            userNav.innerHTML = `👤 ${username}
+              <a href="nuevo.html" style="margin-left:1rem; color:#b71c1c; font-weight:bold;">+ Nuevo</a>
+              <a href="#" onclick="logout()" style="margin-left:1rem; color:#b71c1c;">Cerrar sesión</a>`;
+          } else {
+            userNav.innerHTML = `<a href="login.html" style="color:#b71c1c; font-weight:bold;">Login</a>`;
+          }
+        }
+      });
+
+    function logout() {
+      localStorage.removeItem("usuario");
+      location.reload();
+    }
+  </script>
+
+</body>
+</html>

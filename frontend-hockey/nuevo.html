@@ -1,0 +1,129 @@
+<!-- nuevo.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuevo Implemento</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+      padding: 2rem;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    h2 {
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      margin-top: 2rem;
+      padding: 0.7rem 1.5rem;
+      background: #b71c1c;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .preview {
+      margin-top: 1rem;
+      max-width: 100%;
+      border: 1px solid #ddd;
+    }
+
+    .volver {
+      display: block;
+      text-align: center;
+      margin: 2rem auto;
+      font-weight: bold;
+      color: #222;
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="navbar-container"></div>
+  <h2>Registrar Nuevo Implemento</h2>
+  <form id="form-implemento">
+    <label for="imagen">Imagen</label>
+    <input type="file" id="imagen" accept="image/*" required>
+    <img id="preview" class="preview" style="display:none"/>
+
+    <label for="nombre">Nombre</label>
+    <input type="text" id="nombre" required>
+
+    <label for="club">Club</label>
+    <select id="club" required>
+      <option value="">Selecciona</option>
+      <option value="Avalancha">Avalancha</option>
+      <option value="Raptors">Raptors</option>
+      <option value="Rinos">Rinos</option>
+    </select>
+
+    <label for="pista">Pista donde se encuentra</label>
+    <input type="text" id="pista" required>
+
+    <label for="estado">Estado (1 a 5 estrellas)</label>
+    <select id="estado" required>
+      <option value="">Selecciona</option>
+      <option value="5">Excelente</option>
+      <option value="4">Bueno</option>
+      <option value="3">Usado</option>
+      <option value="2">Dañado</option>
+      <option value="1">Irrecuperable</option>
+    </select>
+
+    <label for="descripcion">Descripción</label>
+    <textarea id="descripcion" rows="4" required></textarea>
+
+    <label for="contacto">Mensaje de contacto (opcional)</label>
+    <input type="text" id="contacto" placeholder="¿Cómo deseas que te contacten?">
+
+    <button type="submit">Guardar</button>
+
+    <a href="index.html" class="volver">← Volver al inicio</a>
+
+  </form>
+
+  <script>
+    const imgInput = document.getElementById("imagen");
+    const preview = document.getElementById("preview");
+
+    imgInput.addEventListener("change", function () {
+      const file = imgInput.files[0];
+      if (file) {
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = "block";
+      }
+    });
+
+    document.getElementById("form-implemento").addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Implemento registrado (simulación frontend). En el backend se almacenaría.");
+      window.location.href = "index.html";
+    });
+
+    
+  </script>
+</body>
+</html>
