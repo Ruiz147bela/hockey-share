@@ -67,7 +67,6 @@ function cargarNuevosImplementos() {
         const div = document.createElement("div");
         div.className = "card";
         div.innerHTML = `
-          <img src="${item.imagen_url}" alt="${item.nombre}" />
           <h3>${item.nombre}</h3>
           <p>Estado: ${"⭐".repeat(item.estado)}</p>
         `;

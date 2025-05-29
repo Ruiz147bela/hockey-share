@@ -21,7 +21,6 @@ CREATE TABLE implementos (
   estado INT NOT NULL CHECK (estado BETWEEN 1 AND 5),
   tipo ENUM('cascos', 'sticks', 'guantes') NOT NULL,
   pista VARCHAR(100),
-  imagen_url TEXT,
   contacto VARCHAR(255),
   id_usuario INT,
   id_club INT,
@@ -39,4 +38,32 @@ CREATE TABLE resenas (
   FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
 );
 
+-- Insertar clubes
 INSERT INTO clubes (nombre) VALUES ('Avalancha'), ('Raptors'), ('Rinos');
+
+-- Insertar usuario de prueba
+INSERT INTO usuarios (nombre, email, contraseña, rol)
+VALUES ('Usuario Demo', 'demo@correo.com', '1234', 'jugador');
+
+-- Insertar 5 implementos por tipo en cada club (3 tipos × 3 clubes × 5 cada uno = 45)
+INSERT INTO implementos (nombre, descripcion, estado, tipo, pista, contacto, id_usuario, id_club)
+SELECT 
+  CONCAT(tipo, ' ', i) AS nombre,
+  CONCAT('Descripción de ', tipo, ' ', i),
+  FLOOR(1 + RAND() * 5),
+  tipo,
+  CONCAT('Pista ', i),
+  'Contacto de prueba',
+  1, -- ID del usuario demo
+  c.id
+FROM (
+  SELECT 'cascos' AS tipo UNION ALL
+  SELECT 'sticks' UNION ALL
+  SELECT 'guantes'
+) tipos,
+(
+  SELECT id FROM clubes
+) c,
+(
+  SELECT 1 AS i UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5
+) nums;

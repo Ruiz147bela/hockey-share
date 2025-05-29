@@ -39,7 +39,7 @@ function cargarImplemento() {
       document.getElementById("desc").textContent = item.descripcion;
       document.getElementById("club").textContent = item.club;
       document.getElementById("pista").textContent = item.pista;
-      document.getElementById("main-img").src = item.imagen_url;
+      // Imagen eliminada
       document.getElementById("stars").textContent = "⭐".repeat(item.estado) + "☆".repeat(5 - item.estado);
       cargarResenas();
     });

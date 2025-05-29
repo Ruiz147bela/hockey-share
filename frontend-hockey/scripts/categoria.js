@@ -47,7 +47,6 @@ function cargarCategoria() {
         const div = document.createElement("div");
         div.className = "product-card";
         div.innerHTML = `
-          <img src="${item.imagen_url}" alt="${item.nombre}">
           <h4>${item.nombre}</h4>
           <p>${item.descripcion}</p>
           <p><strong>Club:</strong> ${item.club}</p>

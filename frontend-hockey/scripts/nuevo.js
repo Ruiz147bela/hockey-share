@@ -2,16 +2,6 @@ const BACKEND_URL = "http://afd7a257f21c149a0b802a37b39f2e21-41552196.us-east-1.
 
 document.addEventListener("DOMContentLoaded", () => {
   cargarNavbar();
-  const imgInput = document.getElementById("imagen");
-  const preview = document.getElementById("preview");
-
-  imgInput.addEventListener("change", () => {
-    const file = imgInput.files[0];
-    if (file) {
-      preview.src = URL.createObjectURL(file);
-      preview.style.display = "block";
-    }
-  });
 
   document.getElementById("form-implemento").addEventListener("submit", (e) => {
     e.preventDefault();
@@ -23,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const descripcion = document.getElementById("descripcion").value.trim();
     const contacto = document.getElementById("contacto").value.trim();
     const id_usuario = localStorage.getItem("usuario_id");
-    const imagen_url = document.getElementById("preview").src || "https://via.placeholder.com/400x300?text=Sin+imagen";
 
     if (!nombre || !club || !pista || !estado || !descripcion || !id_usuario) {
       alert("Por favor completa todos los campos obligatorios.");
@@ -36,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
       estado,
       tipo: detectarTipo(nombre),
       pista,
-      imagen_url,
       contacto,
       id_usuario: parseInt(id_usuario),
       club
